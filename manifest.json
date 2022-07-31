@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Dark Speedreader",
+  "version": "0.1.0",
+  "description": "An extension that enables dark mode for Brave Speedreader that is currently disabled with comments",
+  "icons": {
+    "20": "icons/20.png",
+    "29": "icons/29.png",
+    "40": "icons/40.png",
+    "50": "icons/50.png",
+    "57": "icons/57.png",
+    "58": "icons/58.png",
+    "60": "icons/60.png",
+    "72": "icons/72.png",
+    "76": "icons/76.png",
+    "80": "icons/80.png",
+    "87": "icons/87.png",
+    "100": "icons/100.png",
+    "114": "icons/114.png",
+    "120": "icons/120.png",
+    "144": "icons/144.png",
+    "152": "icons/152.png",
+    "167": "icons/167.png",
+    "180": "icons/180.png"
+  },
+  "action": {
+    "default_title": "Dark Speedreader"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ]
+}
