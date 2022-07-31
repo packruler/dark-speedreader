@@ -69,7 +69,7 @@
 
     // Create the <style> tag
     const style = document.createElement("style");
-
+    style.id = "dark-mode";
     style.appendChild(document.createTextNode(darkStyles));
 
     // Add the <style> element to the page

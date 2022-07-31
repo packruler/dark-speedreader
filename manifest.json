@@ -27,8 +27,12 @@
     "default_title": "Dark Speedreader"
   },
   "permissions": [
+    "scripting",
     "storage"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": [
