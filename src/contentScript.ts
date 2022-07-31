@@ -9,11 +9,9 @@
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 
-function run() {
-  if (document.getElementById('brave_speedreader_style')) {
-    console.log('Speed Reader');
+const DARK_MODE_ID = 'dark-mode';
 
-    const darkStyles = `
+const DARK_STYLES = `
 /* Copied from comment in Brave Speedreader CSS style */
 
 @media (prefers-color-scheme: dark) {
@@ -65,14 +63,35 @@ function run() {
 }
 `;
 
-    // Create the <style> tag
-    const style = document.createElement("style");
-    style.id = "dark-mode";
-    style.appendChild(document.createTextNode(darkStyles));
-
-    // Add the <style> element to the page
-    document.head.appendChild(style);
+function run() {
+  if (document.getElementById('brave_speedreader_style')) {
+    setupDarkMode();
+    addSettingChangeListener();
   }
+}
+
+function setupDarkMode() {
+  chrome.storage.local.get(['enabled'], ({ enabled: enabled }) => {
+    if (enabled) {
+      // Create the <style> tag
+      const style = document.createElement("style");
+      style.id = DARK_MODE_ID;
+      style.appendChild(document.createTextNode(DARK_STYLES));
+
+      // Add the <style> element to the page
+      document.head.appendChild(style);
+    }
+  })
+}
+
+function addSettingChangeListener() {
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    console.log("Changes", changes);
+    console.log('areaName', areaName);
+    if (areaName == 'local' && changes.enabled !== undefined) {
+      window.location.reload();
+    }
+  })
 }
 
 run();
