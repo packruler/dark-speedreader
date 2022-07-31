@@ -1,0 +1,28 @@
+{
+  "name": "dark-speedreader",
+  "version": "1.0.0",
+  "description": "A simple Chrome Extension for handling dark mode for Brave Speedreader",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/packruler/dark-speedreader.git"
+  },
+  "author": "Ethan Leisinger",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/packruler/dark-speedreader/issues"
+  },
+  "homepage": "https://github.com/packruler/dark-speedreader#readme",
+  "dependencies": {
+    "esbuild": "^0.14.51"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.193",
+    "esbuild-copy-static-files": "^0.1.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4"
+  }
+}

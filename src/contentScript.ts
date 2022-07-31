@@ -1,5 +1,3 @@
-'use strict';
-
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
 // Document Object Model (DOM).
@@ -11,7 +9,7 @@
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 
-(function () {
+function run() {
   if (document.getElementById('brave_speedreader_style')) {
     console.log('Speed Reader');
 
@@ -75,5 +73,6 @@
     // Add the <style> element to the page
     document.head.appendChild(style);
   }
-})();
+}
 
+run();
