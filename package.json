@@ -1,9 +1,9 @@
 {
   "name": "dark-speedreader",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A simple Chrome Extension for handling dark mode for Brave Speedreader",
   "scripts": {
-    "build": "node build.js",
+    "build": "rm -r build && node build.js",
     "dev": "node build.js --dev"
   },
   "repository": {

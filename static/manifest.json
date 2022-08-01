@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dark Speedreader",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A simple extension that enables dark mode for Brave Speedreader.",
   "icons": {
     "16": "icons/icon_dark_16.png",
