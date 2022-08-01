@@ -1,16 +1,3 @@
-// Content script file will run in the context of web page.
-// With content script you can manipulate the web pages using
-// Document Object Model (DOM).
-// You can also pass information to the parent extension.
-
-// We execute this script by making an entry in manifest.json file
-// under `content_scripts` property
-
-// For more information on Content Scripts,
-// See https://developer.chrome.com/extensions/content_scripts
-
-const DARK_MODE_ID = 'dark-mode';
-
 const DARK_STYLES = `
 /* Copied from comment in Brave Speedreader CSS style */
 
@@ -63,22 +50,13 @@ const DARK_STYLES = `
 }
 `;
 
-function run() {
-  if (document.getElementById('brave_speedreader_style')) {
-    setupDarkMode();
-    addSettingChangeListener();
-  }
-}
-
 function setupDarkMode() {
   chrome.storage.local.get(['enabled'], ({ enabled: enabled }) => {
     if (enabled) {
       // Create the <style> tag
       const style = document.createElement("style");
-      style.id = DARK_MODE_ID;
       style.appendChild(document.createTextNode(DARK_STYLES));
 
-      // Add the <style> element to the page
       document.head.appendChild(style);
     }
   })
@@ -86,12 +64,17 @@ function setupDarkMode() {
 
 function addSettingChangeListener() {
   chrome.storage.onChanged.addListener((changes, areaName) => {
-    console.log("Changes", changes);
-    console.log('areaName', areaName);
     if (areaName == 'local' && changes.enabled !== undefined) {
       window.location.reload();
     }
   })
+}
+
+function run() {
+  if (document.getElementById('brave_speedreader_style')) {
+    setupDarkMode();
+    addSettingChangeListener();
+  }
 }
 
 run();
