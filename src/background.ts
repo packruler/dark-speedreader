@@ -17,5 +17,10 @@ chrome.action.onClicked.addListener(() => {
 });
 
 chrome.storage.local.get(['enabled'], ({ enabled: enabled }) => {
-  updateAction(enabled);
+  // Set default state to extension being enabled
+  if (enabled === undefined) {
+    chrome.storage.local.set({ enabled: true });
+  } else {
+    updateAction(enabled);
+  }
 });
